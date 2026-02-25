@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario OCAI - Grupo Transatlántica</title>
+    <style>
+        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f4f7f6; --success: #27ae60; --error: #e74c3c; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); padding: 20px; color: var(--primary); line-height: 1.6; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: var(--primary); border-bottom: 3px solid var(--accent); padding-bottom: 15px; margin-bottom: 20px; }
+        
+        .intro-box { background: #f8f9fa; border-left: 5px solid var(--accent); padding: 25px; margin-bottom: 30px; font-size: 0.95em; text-align: justify; border-radius: 0 8px 8px 0; }
+        .section-header { background: #34495e; color: white; padding: 10px 20px; font-weight: bold; margin-top: 30px; border-radius: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Estilos Sociodemográficos */
+        .socio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 8px; margin-bottom: 20px; }
+        .socio-item { display: flex; flex-direction: column; }
+        .socio-item label { font-weight: bold; margin-bottom: 5px; font-size: 0.9em; }
+        select, input[type="number"] { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; }
+
+        /* Tablas OCAI */
+        .dimension-title { background: var(--accent); color: white; padding: 12px 20px; font-weight: bold; margin-top: 40px; border-radius: 5px 5px 0 0; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; table-layout: fixed; }
+        th { background: #f1f1f1; padding: 12px; font-size: 0.8em; border: 1px solid #ddd; }
+        td { border: 1px solid #ddd; padding: 12px; vertical-align: middle; font-size: 0.9em; }
+        .input-col { width: 15%; text-align: center; }
+        input[type="number"] { width: 60px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; }
+        .total-row { background: #f9f9f9; font-weight: bold; }
+
+        .btn-container { text-align: center; margin-top: 40px; padding: 20px; border-top: 2px solid #eee; position: sticky; bottom: 0; background: white; z-index: 100; }
+        .btn-send { background: var(--success); color: white; border: none; padding: 15px 40px; border-radius: 30px; cursor: pointer; font-size: 1.2em; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .btn-send:hover { background: #219150; transform: scale(1.02); }
+
+        @media print { .btn-container, .intro-box { display: none; } body { padding: 0; } .container { box-shadow: none; width: 100%; max-width: 100%; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cuestionario de Cultura Organizacional</h1>
+    
+    <div class="intro-box">
+        <p>Te invitamos a participar en una investigación clave para entender la cultura organizacional de las empresas financieras de <strong>Grupo Transatlántica</strong>. Este estudio busca capturar cómo vivimos hoy nuestra organización y hacia dónde nos gustaría proyectarla para alcanzar nuestros objetivos de negocio.</p>
+        <p>Los resultados de este diagnóstico serán utilizados con fines de análisis interno y, a su vez, formarán parte de un proyecto de <strong>investigación académica para la Maestría en Gestión y Dirección de RR.HH. de la Universidad de San Andrés</strong>.</p>
+        <p><strong>Tu visión es fundamental:</strong> Tu participación es voluntaria, te tomará aproximadamente 15 minutos y es vital para obtener una imagen real de nuestra compañía.</p>
+        <p><strong>Privacidad y Confidencialidad:</strong> La información se procesará de manera agregada y bajo estrictas normas de confidencialidad. Las respuestas son <strong>100% anónimas</strong>; los datos sociodemográficos se solicitan únicamente para realizar análisis comparativos generales por grupos.</p>
+        <p>Muchas gracias por tu tiempo y sinceridad.</p>
+    </div>
+
+    <div class="section-header">SECCIÓN 1: Datos Sociodemográficos</div>
+    <div class="socio-grid">
+        <div class="socio-item">
+            <label>Empresa en la que trabajas:</label>
+            <select id="empresa">
+                <option value="">Seleccione...</option>
+                <option value="TSA Bursatil">TSA Bursátil</option>
+                <option value="Reba">Reba</option>
+                <option value="TSA Cambio">TSA Cambio</option>
+                <option value="TSA Servicios">TSA Servicios</option>
+            </select>
+        </div>
+        <div class="socio-item">
+            <label>Edad:</label>
+            <input type="number" id="edad" placeholder="Ej: 35">
+        </div>
+        <div class="socio-item">
+            <label>Género:</label>
+            <select id="genero">
+                <option value="">Seleccione...</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+            </select>
+        </div>
+        <div class="socio-item">
+            <label>Equipo de trabajo:</label>
+            <select id="equipo">
+                <option value="">Seleccione...</option>
+                <option value="Negocio y Comercial">Negocio y Comercial</option>
+                <option value="Operaciones">Operaciones</option>
+                <option value="RRHH">RRHH</option>
+                <option value="PLAyFT">PLAyFT</option>
+                <option value="Contabilidad y Administración">Contabilidad y Administración</option>
+                <option value="Finanzas">Finanzas</option>
+                <option value="Tecnología">Tecnología, Ingeniería, Datos, Sistemas</option>
+                <option value="Riesgos">Riesgos</option>
+                <option value="Legales">Legales</option>
+                <option value="Procesos">Procesos</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Producto y Growth">Producto y Growth</option>
+                <option value="Atención al Cliente">Atención al Cliente</option>
+            </select>
+        </div>
+        <div class="socio-item">
+            <label>Antigüedad en el Grupo Transatlántica (años):</label>
+            <input type="number" id="antiguedad" placeholder="Ej: 5">
+        </div>
+        <div class="socio-item">
+            <label>Rol dentro de la organización:</label>
+            <select id="rol">
+                <option value="">Seleccione...</option>
+                <option value="Analista">Contribuidor individual - Analista</option>
+                <option value="Lider">Responsable o Líder de área</option>
+                <option value="Gerente">Gerente o Director</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="section-header">SECCIÓN 2: Cuestionario OCAI</div>
+    <div class="intro-box" style="margin-top:15px; border-left-color: #e67e22;">
+        <p>A continuación, verás 6 dimensiones que se aperturan en 4 ítems cada una. Estas intentan indagar cómo percibís la experiencia en tu organización en estos momentos, y luego, cómo creés que debería ser en el futuro para alcanzar sus objetivos de negocio.</p>
+        <p>En la encuesta <strong>“la organización”</strong> se refiere a la empresa en la que trabajas actualmente (TSA Bursátil, Reba, TSA Cambio o TSA Servicios).</p>
+    </div>
+
+    <form id="ocaiForm">
+        <div id="dimensionesContainer"></div>
+    </form>
+
+    <div class="btn-container">
+        <button class="btn-send" id="btnEnviar" onclick="enviarTodo()">Enviar al Sistema</button>
+    </div>
+</div>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5ZXnDcV3fyB0LRVRXH8n5z0UjRGLle9BNfG4DLyGjsgvELnryxlgPWcunMS4_HOgZ6A/exec";
+
+const contenidoDim = [
+    { id: 1, titulo: "1. CARACTERÍSTICAS DOMINANTES", items: [
+        {l: "A", d: "La organización es un lugar muy personal. Es como una familia extendida. Las personas comparten mucho sobre ellos mismos en sus conversaciones."},
+        {l: "B", d: "La organización es un lugar muy dinámico y emprendedor. La gente está dispuesta a hacer valer sus ideas, a arriesgarse y a tomar riesgos."},
+        {l: "C", d: "La organización es muy orientada resultados Una preocupación importante es el lograr culminar los trabajos. La gente es muy competitiva y orientada hacia el resultado."},
+        {l: "D", d: "La organización es un lugar muy controlado y estructurado. Los procedimientos formales generalmente rigen lo que la gente hace."}
+    ]},
+    { id: 2, titulo: "2. LIDERAZGO ORGANIZACIONAL", items: [
+        {l: "A", d: "El liderazgo de la organización es por lo general considerado como ejemplo de guía, que orienta y brinda entrenamiento."},
+        {l: "B", d: "El liderazgo en la organización es considerado como ejemplo de mentalidad emprendedora, de innovación y de asunción de riesgos."},
+        {l: "C", d: "El liderazgo en la organización en general es considerado por su agresivo enfoque orientado a resultados, y que deja de lado todo lo que no tienen directamente que ver con esos resultados."},
+        {l: "D", d: "El liderazgo en la organización es por lo general ejemplo de coordinación, organización y el aseguramiento de la eficiencia."}
+    ]},
+    { id: 3, titulo: "3. GESTIÓN DE LOS EMPLEADOS", items: [
+        {l: "A", d: "El estilo gerencial de la organización se caracteriza por el trabajo en equipo, el consenso y la participación."},
+        {l: "B", d: "El estilo gerencial de la organización se caracteriza por la toma de riesgos individuales, la innovación, la libertad y la singularidad."},
+        {l: "C", d: "El estilo gerencial de la organización se caracteriza por la competencia, altas exigencias y logros."},
+        {l: "D", d: "El estilo gerencial de la organización se caracteriza por la seguridad del empleo, la conformidad, la previsibilidad y la estabilidad en las relaciones."}
+    ]},
+    { id: 4, titulo: "4. COHESIÓN ORGANIZACIONAL", items: [
+        {l: "A", d: "Lo que mantiene unida a la organización es la lealtad y la confianza mutua. El compromiso con la organización es alto."},
+        {l: "B", d: "Lo que mantiene unida a la organización es el compromiso con la innovación y el desarrollo. Hay un énfasis en estar a la vanguardia."},
+        {l: "C", d: "Lo que mantiene unida a la organización es el énfasis sobre el logro y el cumplimiento de metas. La vehemencia y el ganar son temas comunes en las conversaciones."},
+        {l: "D", d: "Lo que mantiene unida a la organización son las reglas y políticas formales. Es importante mantener una organización que funcione sin contratiempos."}
+    ]},
+    { id: 5, titulo: "5. ÉNFASIS ESTRATÉGICO", items: [
+        {l: "A", d: "La organización pone el énfasis en el desarrollo humano. La alta confianza, apertura y participación persisten."},
+        {l: "B", d: "La organización pone el énfasis en la adquisición de nuevos recursos y la creación de nuevos desafíos. Se valoran el intentar cosas nuevas y la búsqueda de oportunidades."},
+        {l: "C", d: "La organización pone el énfasis en acciones competitivas y el cumplimiento de logros. Los objetivos ambiciosos y el ganar posiciones de mercado son temas dominantes."},
+        {l: "D", d: "La organización pone el énfasis en la permanencia y la estabilidad. La eficiencia, el control y el buen funcionamiento son importantes."}
+    ]},
+    { id: 6, titulo: "6. CRITERIO DE ÉXITO", items: [
+        {l: "A", d: "La organización define el éxito sobre la base del desarrollo de los recursos humanos, el trabajo en equipo, el compromiso de los empleados y la preocupación por las personas."},
+        {l: "B", d: "La organización define el éxito sobre la base del contar productos únicos y novedosos. La organización es líder en sus productos y es innovadora."},
+        {l: "C", d: "La organización define el éxito sobre la base vencer y superar a la competencia. El liderazgo competitivo en el mercado es clave."},
+        {l: "D", d: "La organización define el éxito sobre la base del a eficiencia. La entrega confiable, el cumplimiento de sus tareas y seguir un cronograma sin contratiempos es clave."}
+    ]}
+];
+
+function crearTablas() {
+    const container = document.getElementById('dimensionesContainer');
+    contenidoDim.forEach(sec => {
+        let tabla = `<div class="dimension-title">${sec.titulo}</div><table>
+            <thead><tr><th style="width:60%">Escenario</th><th>ACTUAL</th><th>DESEADA</th></tr></thead><tbody>`;
+        sec.items.forEach(item => {
+            tabla += `<tr><td><b>${item.l}.</b> ${item.d}</td>
+                <td class="input-col"><input type="number" class="act_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td>
+                <td class="input-col"><input type="number" class="des_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td></tr>`;
+        });
+        tabla += `<tr class="total-row"><td align="right">TOTAL (Debe ser 100):</td>
+            <td class="input-col"><span id="tot-act-${sec.id}">0</span></td><td class="input-col"><span id="tot-des-${sec.id}">0</span></td></tr></tbody></table>`;
+        container.innerHTML += tabla;
+    });
+}
+
+function calc(id) {
+    let sa = 0; let sd = 0;
+    document.querySelectorAll(`.act_${id}_A, .act_${id}_B, .act_${id}_C, .act_${id}_D`).forEach(i => sa += Number(i.value) || 0);
+    document.querySelectorAll(`.des_${id}_A, .des_${id}_B, .des_${id}_C, .des_${id}_D`).forEach(i => sd += Number(i.value) || 0);
+    const dAct = document.getElementById(`tot-act-${id}`);
+    const dDes = document.getElementById(`tot-des-${id}`);
+    dAct.innerText = sa; dAct.style.color = (sa === 100) ? "green" : "red";
+    dDes.innerText = sd; dDes.style.color = (sd === 100) ? "green" : "red";
+}
+
+async function enviarTodo() {
+    const btn = document.getElementById('btnEnviar');
+    const socioIds = ['empresa', 'edad', 'genero', 'equipo', 'antiguedad', 'rol'];
+    
+    // Validar Sociodemográficos
+    for(let id of socioIds) {
+        if(!document.getElementById(id).value) { alert("Por favor completa todos los datos sociodemográficos."); return; }
+    }
+    
+    // Validar OCAI
+    for(let i=1; i<=6; i++){
+        if(document.getElementById(`tot-act-${i}`).innerText !== "100" || 
+           document.getElementById(`tot-des-${i}`).innerText !== "100") {
+            alert("Error: Todas las secciones OCAI deben sumar 100."); return;
+        }
+    }
+
+    btn.innerText = "Enviando..."; btn.disabled = true;
+
+    const payload = {};
+    socioIds.forEach(id => payload[id] = document.getElementById(id).value);
+    document.querySelectorAll('input[type="number"]').forEach(i => {
+        if(i.className) payload[i.className] = i.value || 0;
+    });
+
+    try {
+        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
+        alert("¡Éxito! Tu participación ha sido registrada correctamente.");
+        btn.innerText = "¡Enviado!";
+    } catch (e) {
+        alert("Error de conexión. Prueba de nuevo."); btn.disabled = false; btn.innerText = "Reintentar";
+    }
+}
+
+crearTablas();
+</script>
+</body>
+</html>
