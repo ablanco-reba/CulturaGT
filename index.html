@@ -3,51 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuestionario Cultura - Grupo Transatlántica</title>
+    <title>Cuestionario OCAI - Grupo Transatlántica</title>
     <style>
-        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f4f7f6; --success: #27ae60; --secondary: #95a5a6; }
+        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f4f7f6; --success: #27ae60; --error: #e74c3c; }
         body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); padding: 20px; color: var(--primary); line-height: 1.6; }
         .container { max-width: 1000px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         h1 { text-align: center; color: var(--primary); border-bottom: 3px solid var(--accent); padding-bottom: 15px; margin-bottom: 20px; }
         
+        .intro-box { background: #f8f9fa; border-left: 5px solid var(--accent); padding: 25px; margin-bottom: 30px; font-size: 0.95em; text-align: justify; border-radius: 0 8px 8px 0; }
+        .section-header { background: #34495e; color: white; padding: 10px 20px; font-weight: bold; margin-top: 30px; border-radius: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        
         /* Sistema de Pasos */
         .step-indicator { text-align: center; font-weight: bold; margin-bottom: 20px; color: var(--accent); font-size: 1.2em; background: #eef2f7; padding: 10px; border-radius: 8px; }
         .form-step { display: none; }
-        .form-step.active { display: block; animation: fadeIn 0.4s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .form-step.active { display: block; }
 
-        .intro-box { background: #f8f9fa; border-left: 5px solid var(--accent); padding: 25px; margin-bottom: 30px; font-size: 0.95em; text-align: justify; }
-        .section-header { background: #34495e; color: white; padding: 12px 20px; font-weight: bold; margin: 30px 0 15px; border-radius: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        
-        /* Estilos Sociodemográficos e Inputs */
-        .socio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 8px; }
-        .socio-item { display: flex; flex-direction: column; margin-bottom: 10px; }
-        .socio-item label { font-weight: bold; margin-bottom: 8px; font-size: 0.95em; }
-        select, input[type="number"], textarea { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1em; width: 100%; box-sizing: border-box; }
+        /* Estilos Sociodemográficos */
+        .socio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 8px; margin-bottom: 20px; }
+        .socio-item { display: flex; flex-direction: column; }
+        .socio-item label { font-weight: bold; margin-bottom: 5px; font-size: 0.9em; }
+        select, input[type="number"], textarea { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; width: 100%; box-sizing: border-box; }
         textarea { resize: vertical; min-height: 100px; font-family: inherit; }
 
         /* Tablas OCAI */
-        .dimension-title { background: var(--accent); color: white; padding: 12px 20px; font-weight: bold; margin-top: 30px; border-radius: 5px 5px 0 0; }
+        .dimension-title { background: var(--accent); color: white; padding: 12px 20px; font-weight: bold; margin-top: 40px; border-radius: 5px 5px 0 0; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 10px; table-layout: fixed; }
-        th { background: #f1f1f1; padding: 12px; font-size: 0.85em; border: 1px solid #ddd; text-align: center; }
-        td { border: 1px solid #ddd; padding: 12px; font-size: 0.9em; vertical-align: middle; }
-        .input-col { width: 18%; text-align: center; }
-        .input-col input { width: 70px; text-align: center; font-weight: bold; padding: 8px; }
-        .total-row { background: #f9f9f9; font-weight: bold; color: var(--primary); }
+        th { background: #f1f1f1; padding: 12px; font-size: 0.8em; border: 1px solid #ddd; }
+        td { border: 1px solid #ddd; padding: 12px; vertical-align: middle; font-size: 0.9em; }
+        .input-col { width: 15%; text-align: center; }
+        input[type="number"] { width: 60px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; }
+        .total-row { background: #f9f9f9; font-weight: bold; }
 
         /* Escala Likert Sección 3 */
-        .likert-table th { font-size: 0.8em; }
-        .likert-table td:first-child { width: 35%; font-weight: bold; background: #fcfcfc; }
+        .likert-table th { font-size: 0.8em; text-align: center; }
+        .likert-table td:first-child { width: 35%; font-weight: bold; }
         .likert-table td { text-align: center; }
-        input[type="radio"] { transform: scale(1.3); cursor: pointer; }
+        input[type="radio"] { transform: scale(1.2); cursor: pointer; }
 
-        /* Botonera */
-        .btn-container { text-align: center; margin-top: 40px; padding: 30px 0; border-top: 2px solid #eee; }
-        .btn { padding: 15px 45px; border-radius: 35px; cursor: pointer; font-size: 1.15em; font-weight: bold; border: none; transition: 0.3s; margin: 10px; }
-        .btn-next { background: var(--accent); color: white; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
-        .btn-send { background: var(--success); color: white; box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3); }
-        .btn:hover { opacity: 0.9; transform: translateY(-3px); }
-        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        .btn-container { text-align: center; margin-top: 40px; padding: 20px; border-top: 2px solid #eee; }
+        .btn { padding: 15px 40px; border-radius: 30px; cursor: pointer; font-size: 1.1em; font-weight: bold; border: none; transition: 0.3s; margin: 10px; }
+        .btn-next { background: var(--accent); color: white; }
+        .btn-send { background: var(--success); color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
+
+        @media print { .btn-container, .intro-box, .step-indicator { display: none; } body { padding: 0; } .container { box-shadow: none; width: 100%; max-width: 100%; } }
     </style>
 </head>
 <body>
@@ -57,23 +56,23 @@
     
     <div class="step-indicator" id="stepText">Sección 1 de 3</div>
 
-    <form id="mainForm">
+    <form id="combinedForm">
         
         <div class="form-step active" id="step1">
-        <div class="intro-box">
-        <p>Te invitamos a participar en una investigación clave para entender la cultura organizacional de las empresas financieras de <strong>Grupo Transatlántica</strong>. Este estudio busca capturar cómo vivimos hoy nuestra organización y hacia dónde nos gustaría proyectarla para alcanzar nuestros objetivos de negocio.</p>
-        <p>Los resultados de este diagnóstico serán utilizados con fines de análisis interno y, a su vez, formarán parte de un proyecto de <strong>investigación académica para la Maestría en Gestión y Dirección de RR.HH. de la Universidad de San Andrés</strong>.</p>
-        
-        <p>Por favor, califica cada afirmación distribuyendo <strong>100 puntos</strong> entre las alternativas A, B, C, y D; dependiendo de cuán similar es la descripción planteada sobre tu organización (100 sería exactamente igual a cómo es tu organización, y 0 nada parecido). <strong>La suma total de puntos en cada pregunta debe ser igual a 100.</strong></p>
-        
-        <p style="font-style: italic; color: #555;">Como suele suceder en los cuestionarios, es posible que te sientas tentado de responder "depende". En algunos casos puede que no encuentres gran diferencia entre algunos enunciados y otros. No te detengas por eso. Aunque el cuestionario no resulte demasiado preciso, te va a dar algunas pistas útiles de todas maneras. Cuando dudes no te detengas a pensar demasiado, sigue a tu intuición, elige la primera reacción.</p>
+            <div class="intro-box">
+                <p>Te invitamos a participar en una investigación clave para entender la cultura organizacional de las empresas financieras de <strong>Grupo Transatlántica</strong>. Este estudio busca capturar cómo vivimos hoy nuestra organización y hacia dónde nos gustaría proyectarla para alcanzar nuestros objetivos de negocio.</p>
+                <p>Los resultados de este diagnóstico serán utilizados con fines de análisis interno y, a su vez, formarán parte de un proyecto de <strong>investigación académica para la Maestría en Gestión y Dirección de RR.HH. de la Universidad de San Andrés</strong>.</p>
+                
+                <p>Por favor, califica cada afirmación distribuyendo <strong>100 puntos</strong> entre las alternativas A, B, C, y D; dependiendo de cuán similar es la descripción planteada sobre tu organización (100 sería exactamente igual a cómo es tu organización, y 0 nada parecido). <strong>La suma total de puntos en cada pregunta debe ser igual a 100.</strong></p>
+                
+                <p style="font-style: italic; color: #555;">Como suele suceder en los cuestionarios, es posible que te sientas tentado de responder "depende". En algunos casos puede que no encuentres gran diferencia entre algunos enunciados y otros. No te detengas por eso. Aunque el cuestionario no resulte demasiado preciso, te va a dar algunas pistas útiles de todas maneras. Cuando dudes no te detengas a pensar demasiado, sigue a tu intuición, elige la primera reacción.</p>
 
-        <p><strong>Tu visión es fundamental:</strong> Tu participación es voluntaria, te tomará aproximadamente 15 minutos y es vital para obtener una imagen real de nuestra compañía.</p>
-        <p><strong>Privacidad y Confidencialidad:</strong> La información se procesará de manera agregada y bajo estrictas normas de confidencialidad. Las respuestas son <strong>100% anónimas</strong>; los datos sociodemográficos se solicitan únicamente para realizar análisis comparativos generales por grupos.</p>
-        <p>Muchas gracias por tu tiempo y sinceridad.</p>
-    </div>
+                <p><strong>Tu visión es fundamental:</strong> Tu participación es voluntaria, te tomará aproximadamente 15 minutos y es vital para obtener una imagen real de nuestra compañía.</p>
+                <p><strong>Privacidad y Confidencialidad:</strong> La información se procesará de manera agregada y bajo estrictas normas de confidencialidad. Las respuestas son <strong>100% anónimas</strong>; los datos sociodemográficos se solicitan únicamente para realizar análisis comparativos generales por grupos.</p>
+                <p>Muchas gracias por tu tiempo y sinceridad.</p>
+            </div>
 
-            <div class="section-header">Datos Sociodemográficos</div>
+            <div class="section-header">SECCIÓN 1: Datos Sociodemográficos</div>
             <div class="socio-grid">
                 <div class="socio-item">
                     <label>Empresa en la que trabajas:</label>
@@ -85,10 +84,15 @@
                         <option value="TSA Servicios">TSA Servicios</option>
                     </select>
                 </div>
-                <div class="socio-item"><label>Edad:</label><input type="number" id="edad" placeholder="Ej: 30"></div>
+                <div class="socio-item"><label>Edad:</label><input type="number" id="edad" placeholder="Ej: 35"></div>
                 <div class="socio-item">
                     <label>Género:</label>
-                    <select id="genero"><option value="">Seleccione...</option><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option><option value="Otro">Otro</option></select>
+                    <select id="genero">
+                        <option value="">Seleccione...</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
                 </div>
                 <div class="socio-item">
                     <label>Equipo de trabajo:</label>
@@ -97,20 +101,37 @@
                         <option value="Negocio y Comercial">Negocio y Comercial</option>
                         <option value="Operaciones">Operaciones</option>
                         <option value="RRHH">RRHH</option>
+                        <option value="PLAyFT">PLAyFT</option>
+                        <option value="Contabilidad y Administración">Contabilidad y Administración</option>
+                        <option value="Finanzas">Finanzas</option>
                         <option value="Tecnología">Tecnología, Ingeniería, Datos, Sistemas</option>
-                        <option value="Finanzas">Finanzas / Contabilidad</option>
-                        <option value="Otros">Otros</option>
+                        <option value="Riesgos">Riesgos</option>
+                        <option value="Legales">Legales</option>
+                        <option value="Procesos">Procesos</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Producto y Growth">Producto y Growth</option>
+                        <option value="Atención al Cliente">Atención al Cliente</option>
                     </select>
                 </div>
-                <div class="socio-item"><label>Antigüedad (años):</label><input type="number" id="antiguedad" placeholder="Ej: 2"></div>
+                <div class="socio-item"><label>Antigüedad en el Grupo Transatlántica (años):</label><input type="number" id="antiguedad" placeholder="Ej: 5"></div>
                 <div class="socio-item">
-                    <label>Rol:</label>
-                    <select id="rol"><option value="">Seleccione...</option><option value="Analista">Analista</option><option value="Lider">Responsable / Líder</option><option value="Gerente">Gerente / Director</option></select>
+                    <label>Rol dentro de la organización:</label>
+                    <select id="rol">
+                        <option value="">Seleccione...</option>
+                        <option value="Analista">Contribuidor individual - Analista</option>
+                        <option value="Lider">Responsable o Líder de área</option>
+                        <option value="Gerente">Gerente o Director</option>
+                    </select>
                 </div>
             </div>
 
             <div class="section-header">Cuestionario OCAI</div>
-            <div id="ocaiContainer"></div>
+            <div class="intro-box" style="margin-top:15px; border-left-color: #e67e22;">
+                <p>A continuación, verás 6 dimensiones que se aperturan en 4 ítems cada una. Estas intentan indagar cómo percibís la experiencia en tu organización en estos momentos, y luego, cómo creés que debería ser en el futuro para alcanzar sus objetivos de negocio.</p>
+                <p>En la encuesta <strong>“la organización”</strong> se refiere a la empresa en la que trabajas actualmente (TSA Bursátil, Reba, TSA Cambio o TSA Servicios).</p>
+            </div>
+
+            <div id="dimensionesContainer"></div>
             
             <div class="btn-container">
                 <button type="button" class="btn btn-next" onclick="nextStep(2)">Pasar a la Siguiente Sección (2/3)</button>
@@ -119,18 +140,14 @@
 
         <div class="form-step" id="step2">
             <div class="section-header">SECCIÓN 2: Percepción de Cultura</div>
-            <div class="intro-box">Por favor, responde brevemente con tus propias palabras:</div>
-            
-            <div class="socio-item">
+            <div class="socio-item" style="margin-top:20px;">
                 <label>1) ¿Con qué palabra o palabras (brevemente) describirías la cultura de la organización en la que vos te desempeñas?</label>
-                <textarea id="desc_cultura_propia" placeholder="Escribe tu respuesta aquí..."></textarea>
+                <textarea id="desc_cultura_propia" placeholder="Escribe aquí..."></textarea>
             </div>
-            
-            <div class="socio-item" style="margin-top:25px;">
+            <div class="socio-item" style="margin-top:20px;">
                 <label>2) ¿Con qué palabra o palabras (brevemente) describirías a la cultura actual del Grupo Transatlántica?</label>
-                <textarea id="desc_cultura_grupo" placeholder="Escribe tu respuesta aquí..."></textarea>
+                <textarea id="desc_cultura_grupo" placeholder="Escribe aquí..."></textarea>
             </div>
-
             <div class="btn-container">
                 <button type="button" class="btn btn-next" onclick="nextStep(3)">Pasar a la Siguiente Sección (3/3)</button>
             </div>
@@ -138,24 +155,16 @@
 
         <div class="form-step" id="step3">
             <div class="section-header">SECCIÓN 3: Valoración de Valores</div>
-            <div class="intro-box">
-                ¿Qué tanto te representan los valores actuales del grupo? ¿Sentís que se viven en tu día a día laboral?
-                <br><br>
-                <strong>Escala:</strong> 1: Muy Deficiente / Desacuerdo | 5: Excelente / Muy de acuerdo.
-            </div>
+            <p>¿Qué tanto te representan los valores actuales del grupo? ¿Sentís que se viven en tu día a día laboral?</p>
+            <p><small>1: Muy Deficiente | 5: Excelente</small></p>
             
             <table class="likert-table">
-                <thead>
-                    <tr>
-                        <th>Valor</th>
-                        <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>Valor</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
                 <tbody id="valoresBody"></tbody>
             </table>
 
             <div class="btn-container">
-                <button type="button" class="btn btn-send" id="btnEnviar" onclick="enviarTodo()">Finalizar y Enviar Encuesta</button>
+                <button type="button" class="btn btn-send" id="btnEnviar" onclick="enviarTodo()">Enviar al Sistema</button>
             </div>
         </div>
 
@@ -167,63 +176,65 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztrSeMfqHF9ulhEnRwp
 
 const contenidoDim = [
     { id: 1, titulo: "1. CARACTERÍSTICAS DOMINANTES", items: [
-        {l: "A", d: "La organización es un lugar muy personal. Familia extendida."},
-        {l: "B", d: "La organización es un lugar dinámico y emprendedor."},
-        {l: "C", d: "La organización es muy orientada a resultados."},
-        {l: "D", d: "La organización es un lugar controlado y estructurado."}
+        {l: "A", d: "La organización es un lugar muy personal. Es como una familia extendida. Las personas comparten mucho sobre ellos mismos en sus conversaciones."},
+        {l: "B", d: "La organización es un lugar muy dinámico y emprendedor. La gente está dispuesta a hacer valer sus ideas, a arriesgarse y a tomar riesgos."},
+        {l: "C", d: "La organización es muy orientada resultados Una preocupación importante es el lograr culminar los trabajos. La gente es muy competitiva y orientada hacia el resultado."},
+        {l: "D", d: "La organización es un lugar muy controlado y estructurado. Los procedimientos formales generalmente rigen lo que la gente hace."}
     ]},
     { id: 2, titulo: "2. LIDERAZGO ORGANIZACIONAL", items: [
-        {l: "A", d: "Guía, orientación y entrenamiento."},
-        {l: "B", d: "Innovación y asunción de riesgos."},
-        {l: "C", d: "Agresivo enfoque a resultados."},
-        {l: "D", d: "Coordinación, organización y eficiencia."}
+        {l: "A", d: "El liderazgo de la organización es por lo general considerado como ejemplo de guía, que orienta y brinda entrenamiento."},
+        {l: "B", d: "El liderazgo en la organización es considerado como ejemplo de mentalidad emprendedora, de innovación y de asunción de riesgos."},
+        {l: "C", d: "El liderazgo en la organización en general es considerado por su agresivo enfoque orientado a resultados, y que deja de lado todo lo que no tienen directamente que ver con esos resultados."},
+        {l: "D", d: "El liderazgo en la organización es por lo general ejemplo de coordinación, organización y el aseguramiento de la eficiencia."}
     ]},
     { id: 3, titulo: "3. GESTIÓN DE LOS EMPLEADOS", items: [
-        {l: "A", d: "Trabajo en equipo, consenso y participación."},
-        {l: "B", d: "Innovación, libertad y singularidad."},
-        {l: "C", d: "Competencia, altas exigencias y logros."},
-        {l: "D", d: "Seguridad, conformidad y estabilidad."}
+        {l: "A", d: "El estilo gerencial de la organización se caracteriza por el trabajo en equipo, el consenso y la participación."},
+        {l: "B", d: "El estilo gerencial de la organización se caracteriza por la toma de riesgos individuales, la innovación, la libertad y la singularidad."},
+        {l: "C", d: "El estilo gerencial de la organización se caracteriza por la competencia, altas exigencias y logros."},
+        {l: "D", d: "El estilo gerencial de la organización se caracteriza por la seguridad del empleo, la conformidad, la previsibilidad y la estabilidad en las relaciones."}
     ]},
     { id: 4, titulo: "4. COHESIÓN ORGANIZACIONAL", items: [
-        {l: "A", d: "Lealtad y confianza mutua."},
-        {l: "B", d: "Compromiso con la innovación."},
-        {l: "C", d: "Énfasis sobre el logro y metas."},
-        {l: "D", d: "Reglas y políticas formales."}
+        {l: "A", d: "Lo que mantiene unida a la organización es la lealtad y la confianza mutua. El compromiso con la organización es alto."},
+        {l: "B", d: "Lo que mantiene unida a la organización es el compromiso con la innovación y el desarrollo. Hay un énfasis en estar a la vanguardia."},
+        {l: "C", d: "Lo que mantiene unida a la organización es el énfasis sobre el logro y el cumplimiento de metas. La vehemencia y el ganar son temas comunes en las conversaciones."},
+        {l: "D", d: "Lo que mantiene unida a la organización son las reglas y políticas formales. Es importante mantener una organización que funcione sin contratiempos."}
     ]},
     { id: 5, titulo: "5. ÉNFASIS ESTRATÉGICO", items: [
-        {l: "A", d: "Desarrollo humano y alta confianza."},
-        {l: "B", d: "Adquisición de recursos y desafíos."},
-        {l: "C", d: "Acciones competitivas y ganar mercado."},
-        {l: "D", d: "Permanencia, estabilidad y eficiencia."}
+        {l: "A", d: "La organización pone el énfasis en el desarrollo humano. La alta confianza, apertura y participación persisten."},
+        {l: "B", d: "La organización pone el énfasis en la adquisición de nuevos recursos y la creación de nuevos desafíos. Se valoran el intentar cosas nuevas y la búsqueda de oportunidades."},
+        {l: "C", d: "La organización pone el énfasis en acciones competitivas y el cumplimiento de logros. Los objetivos ambiciosos y el ganar posiciones de mercado son temas dominantes."},
+        {l: "D", d: "La organización pone el énfasis en la permanencia y la estabilidad. La eficiencia, el control y el buen funcionamiento son importantes."}
     ]},
     { id: 6, titulo: "6. CRITERIO DE ÉXITO", items: [
-        {l: "A", d: "Desarrollo humano y trabajo en equipo."},
-        {l: "B", d: "Productos únicos y novedosos."},
-        {l: "C", d: "Vencer y superar a la competencia."},
-        {l: "D", d: "Eficiencia y entrega confiable."}
+        {l: "A", d: "La organización define el éxito sobre la base del desarrollo de los recursos humanos, el trabajo en equipo, el compromiso de los empleados y la preocupación por las personas."},
+        {l: "B", d: "La organización define el éxito sobre la base del contar productos únicos y novedosos. La organización es líder en sus productos y es innovadora."},
+        {l: "C", d: "La organización define el éxito sobre la base vencer y superar a la competencia. El liderazgo competitivo en el mercado es clave."},
+        {l: "D", d: "La organización define el éxito sobre la base del a eficiencia. La entrega confiable, el cumplimiento de sus tareas y seguir un cronograma sin contratiempos es clave."}
     ]}
 ];
 
 const listaValores = ["Sinergia", "Mente abierta", "Humano", "Proactividad", "Transparencia", "Calidad"];
 
-function init() {
-    const container = document.getElementById('ocaiContainer');
+function crearTablas() {
+    const container = document.getElementById('dimensionesContainer');
     contenidoDim.forEach(sec => {
-        let t = `<div class="dimension-title">${sec.titulo}</div><table><thead><tr><th>Escenario</th><th>ACTUAL</th><th>DESEADA</th></tr></thead><tbody>`;
+        let tabla = `<div class="dimension-title">${sec.titulo}</div><table>
+            <thead><tr><th style="width:60%">Escenario</th><th>ACTUAL</th><th>DESEADA</th></tr></thead><tbody>`;
         sec.items.forEach(item => {
-            t += `<tr><td><b>${item.l}.</b> ${item.d}</td>
+            tabla += `<tr><td><b>${item.l}.</b> ${item.d}</td>
                 <td class="input-col"><input type="number" class="act_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td>
                 <td class="input-col"><input type="number" class="des_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td></tr>`;
         });
-        t += `<tr class="total-row"><td align="right">TOTAL (Debe ser 100):</td><td><span id="tot-act-${sec.id}">0</span></td><td><span id="tot-des-${sec.id}">0</span></td></tr></tbody></table>`;
-        container.innerHTML += t;
+        tabla += `<tr class="total-row"><td align="right">TOTAL (Debe ser 100):</td>
+            <td class="input-col"><span id="tot-act-${sec.id}">0</span></td><td class="input-col"><span id="tot-des-${sec.id}">0</span></td></tr></tbody></table>`;
+        container.innerHTML += tabla;
     });
 
     const vBody = document.getElementById('valoresBody');
     listaValores.forEach(v => {
         let row = `<tr><td>${v}</td>`;
         for(let i=1; i<=5; i++) {
-            row += `<td><input type="radio" name="val_${v.toLowerCase()}" value="${i}"></td>`;
+            row += `<td><input type="radio" name="val_${v.toLowerCase().replace(' ', '')}" value="${i}"></td>`;
         }
         row += `</tr>`;
         vBody.innerHTML += row;
@@ -231,7 +242,7 @@ function init() {
 }
 
 function calc(id) {
-    let sa = 0, sd = 0;
+    let sa = 0; let sd = 0;
     document.querySelectorAll(`.act_${id}_A, .act_${id}_B, .act_${id}_C, .act_${id}_D`).forEach(i => sa += Number(i.value) || 0);
     document.querySelectorAll(`.des_${id}_A, .des_${id}_B, .des_${id}_C, .des_${id}_D`).forEach(i => sd += Number(i.value) || 0);
     const dAct = document.getElementById(`tot-act-${id}`);
@@ -246,13 +257,13 @@ function nextStep(step) {
         for(let id of socioIds) if(!document.getElementById(id).value) { alert("Por favor completa los datos sociodemográficos."); return; }
         for(let i=1; i<=6; i++) {
             if(document.getElementById(`tot-act-${i}`).innerText !== "100" || document.getElementById(`tot-des-${i}`).innerText !== "100") {
-                alert("Cada sección del cuestionario OCAI debe sumar 100 puntos."); return;
+                alert("Cada sección OCAI debe sumar 100."); return;
             }
         }
     }
     if (step === 3) {
         if(!document.getElementById('desc_cultura_propia').value.trim() || !document.getElementById('desc_cultura_grupo').value.trim()) {
-            alert("Por favor responde las preguntas de la sección 2."); return;
+            alert("Por favor completa las respuestas abiertas."); return;
         }
     }
     document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
@@ -264,31 +275,31 @@ function nextStep(step) {
 async function enviarTodo() {
     const payload = {};
     for(let v of listaValores) {
-        const val = document.querySelector(`input[name="val_${v.toLowerCase()}"]:checked`);
-        if(!val) { alert("Por favor valora todos los valores corporativos."); return; }
+        const val = document.querySelector(`input[name="val_${v.toLowerCase().replace(' ', '')}"]:checked`);
+        if(!val) { alert("Por favor valora todos los valores del paso 3."); return; }
         payload['valor_' + v.toLowerCase()] = val.value;
     }
 
     const btn = document.getElementById('btnEnviar');
+    const socioIds = ['empresa', 'edad', 'genero', 'equipo', 'antiguedad', 'rol', 'desc_cultura_propia', 'desc_cultura_grupo'];
+    
     btn.innerText = "Enviando..."; btn.disabled = true;
 
-    const socioIds = ['empresa', 'edad', 'genero', 'equipo', 'antiguedad', 'rol', 'desc_cultura_propia', 'desc_cultura_grupo'];
     socioIds.forEach(id => payload[id] = document.getElementById(id).value);
-    
     document.querySelectorAll('input[type="number"]').forEach(i => {
         if(i.className) payload[i.className] = i.value || 0;
     });
 
     try {
         await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-        alert("¡Éxito! Tu participación ha sido registrada correctamente. Muchas gracias.");
+        alert("¡Éxito! Tu participación ha sido registrada correctamente.");
         location.reload();
     } catch (e) {
-        alert("Error de conexión. Intenta de nuevo."); btn.disabled = false; btn.innerText = "Finalizar y Enviar";
+        alert("Error de conexión. Prueba de nuevo."); btn.disabled = false; btn.innerText = "Reintentar";
     }
 }
 
-init();
+crearTablas();
 </script>
 </body>
 </html>
