@@ -26,6 +26,8 @@
         .input-col { width: 85px; text-align: center; }
         input[type="number"] { width: 60px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; }
         .total-row { background: #f9f9f9; font-weight: bold; }
+        .status-red { color: var(--error); }
+        .status-green { color: var(--success); }
         .likert-table th { font-size: 0.8em; text-align: center; }
         .likert-table td:first-child { width: 35%; font-weight: bold; }
         .likert-table td { text-align: center; }
@@ -66,13 +68,19 @@
                     </select>
                 </div>
                 <div class="socio-item"><label>Antigüedad (años):</label><input type="number" id="antiguedad"></div>
-                <div class="socio-item"><label>Rol:</label><select id="rol"><option value="">Seleccione...</option><option value="Analista">Analista</option><option value="Lider">Líder</option><option value="Gerente">Gerente/Director</option></select></div>
+                <div class="socio-item"><label>Rol dentro de la organización:</label>
+                    <select id="rol">
+                        <option value="">Seleccione...</option>
+                        <option value="Contribuidor Individual - Analista">Contribuidor Individual - Analista</option>
+                        <option value="Líder / Responsable">Líder / Responsable</option>
+                        <option value="Gerente / Director">Gerente / Director</option>
+                    </select>
+                </div>
             </div>
 
             <div class="section-header">Cuestionario OCAI</div>
             <div class="intro-box" style="margin-top:15px; border-left-color: #e67e22;">
-                <p>A continuación, verás 6 dimensiones que se aperturan en 4 ítems cada una. Estas intentan indagar cómo percibís la experiencia en tu organización en estos momentos, y luego, cómo creés que debería ser en el futuro para alcanzar sus objetivos de negocio.</p>
-                <p>En la encuesta <strong>“la organización”</strong> se refiere a la empresa en la que trabajas actualmente.</p>
+                <p>A continuación, verás 6 dimensiones. <strong>“La organización”</strong> se refiere a la empresa en la que trabajas actualmente.</p>
             </div>
             
             <div id="dimensionesContainer"></div>
@@ -84,8 +92,8 @@
 
         <div class="form-step" id="step2">
             <div class="section-header">SECCIÓN 2: Percepción de Cultura</div>
-            <div class="socio-item" style="margin-top:20px;"><label>1) ¿Con qué palabra o palabras (brevemente) describirías la cultura actual de la organización en la que vos te desempeñas?</label><textarea id="desc_cultura_propia"></textarea></div>
-            <div class="socio-item" style="margin-top:20px;"><label>2) ¿Con qué palabra o palabras (brevemente) describirías a la cultura actual del Grupo Transatlántica?</label><textarea id="desc_cultura_grupo"></textarea></div>
+            <div class="socio-item" style="margin-top:20px;"><label>1) ¿Con qué palabra o palabras describirías la cultura actual de tu organización?</label><textarea id="desc_cultura_propia"></textarea></div>
+            <div class="socio-item" style="margin-top:20px;"><label>2) ¿Con qué palabra o palabras describirías la cultura actual del Grupo Transatlántica?</label><textarea id="desc_cultura_grupo"></textarea></div>
             <div class="btn-container">
                 <button type="button" class="btn btn-prev" onclick="goToStep(1)">Volver</button>
                 <button type="button" class="btn btn-next" onclick="nextStep(3)">Siguiente Sección (3/3)</button>
@@ -95,9 +103,13 @@
         <div class="form-step" id="step3">
             <div class="section-header">SECCIÓN 3: Valoración de Valores</div>
             <p>¿Qué tanto te representan los valores actuales del grupo? ¿Sentís que se viven en tu día a día laboral?</p>
-            <div class="intro-box">
+            <div class="intro-box" style="margin-bottom: 20px; font-size: 0.85em;">
                 <strong>Escala de representación:</strong><br>
-                1) Nada representado | 2) Poco representado | 3) Neutral | 4) Representado | 5) Totalmente representado
+                1) <strong>Nada representado:</strong> No me identifico y no veo que se apliquen.<br>
+                2) <strong>Poco representado:</strong> Me identifico poco y rara vez se ven en la práctica.<br>
+                3) <strong>Neutral / Regular:</strong> Me identifico a veces y se viven de forma inconsistente.<br>
+                4) <strong>Representado:</strong> Me identifico y los percibo en la mayoría de mis tareas.<br>
+                5) <strong>Totalmente representado:</strong> Me identifico plenamente y los vivo en mi día a día.
             </div>
             <table class="likert-table">
                 <thead><tr><th>Valor</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
@@ -112,15 +124,15 @@
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnc7I5S7ZIT-tcF2XXBOQQ9H636sw26d2j3Auh_UvVAHZm9BgUC_tBUovuMV7psdTw7w/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzuUxY2K804rWgTybovhcitNv_AwVWJFojP6we-t0oPHjedDVSwiYdOydAedJ__4ldIRw/exec";
 
 const contenidoDim = [
-    { id: 1, titulo: "1. CARACTERÍSTICAS DOMINANTES", items: [{l: "A", d: "La organización es un lugar muy personal. Es como una familia extendida. Las personas comparten mucho sobre ellos mismos en sus conversaciones."}, {l: "B", d: "La organización es un lugar muy dinámico y emprendedor. La gente está dispuesta a hacer valer sus ideas, a arriesgarse y a tomar riesgos."}, {l: "C", d: "La organización es muy orientada resultados Una preocupación importante es el lograr culminar los trabajos. La gente es muy competitiva y orientada hacia el resultado."}, {l: "D", d: "La organización es un lugar muy controlado y estructurado. Los procedimientos formales generalmente rigen lo que la gente hace."}]},
-    { id: 2, titulo: "2. LIDERAZGO ORGANIZACIONAL", items: [{l: "A", d: "El liderazgo de la organización es por lo general considerado como ejemplo de guía, que orienta y brinda entrenamiento."}, {l: "B", d: "El liderazgo en la organización es considerado como ejemplo de mentalidad emprendedora, de innovación y de asunción de riesgos."}, {l: "C", d: "El liderazgo en la organización en general es considerado por su agresivo enfoque orientado a resultados, y que deja de lado todo lo que no tienen directamente que ver con esos resultados."}, {l: "D", d: "El liderazgo en la organización es por lo general ejemplo de coordinación, organización y el aseguramiento de la eficiencia."}]},
-    { id: 3, titulo: "3. GESTIÓN DE LOS EMPLEADOS", items: [{l: "A", d: "El estilo gerencial de la organización se caracteriza por el trabajo en equipo, el consenso y la participación."}, {l: "B", d: "El estilo gerencial de la organización se caracteriza por la toma de riesgos individuales, la innovación, la libertad y la singularidad."}, {l: "C", d: "El estilo gerencial de la organización se caracteriza por la competencia, altas exigencias y logros."}, {l: "D", d: "El estilo gerencial de la organización se caracteriza por la seguridad del empleo, la conformidad, la previsibilidad y la estabilidad en las relaciones."}]},
-    { id: 4, titulo: "4. COHESIÓN ORGANIZACIONAL", items: [{l: "A", d: "Lo que mantiene unida a la organización es la lealtad y la confianza mutua. El compromiso con la organización es alto."}, {l: "B", d: "Lo que mantiene unida a la organización es el compromiso con la innovación y el desarrollo. Hay un énfasis en estar a la vanguardia."}, {l: "C", d: "Lo que mantiene unida a la organización es el énfasis sobre el logro y el cumplimiento de metas. La vehemencia y el ganar son temas comunes en las conversaciones."}, {l: "D", d: "Lo que mantiene unida a la organización son las reglas y políticas formales. Es importante mantener una organización que funcione sin contratiempos."}]},
-    { id: 5, titulo: "5. ÉNFASIS ESTRATÉGICO", items: [{l: "A", d: "La organización pone el énfasis en el desarrollo humano. La alta confianza, apertura y participación persisten."}, {l: "B", d: "La organización pone el énfasis en la adquisición de nuevos recursos y la creación de nuevos desafíos. Se valoran el intentar cosas nuevas y la búsqueda de oportunidades."}, {l: "C", d: "La organización pone el énfasis en acciones competitivas y el cumplimiento de logros. Los objetivos ambiciosos y el ganar posiciones de mercado son temas dominantes."}, {l: "D", d: "La organización pone el énfasis en la permanencia y la estabilidad. La eficiencia, el conrol y el buen funcionamiento son importantes."}]},
-    { id: 6, titulo: "6. CRITERIO DE ÉXITO", items: [{l: "A", d: "La organización define el éxito sobre la base del desarrollo de los recursos humanos, el trabajo en equipo, el compromiso de los empleados y la preocupación por las personas."}, {l: "B", d: "La organización define el éxito sobre la base del contar productos únicos y novedosos. La organización es líder en sus productos y es innovadora."}, {l: "C", d: "La organización define el éxito sobre la base vencer y superar a la competencia. El liderazgo competitivo en el mercado es clave."}, {l: "D", d: "La organización define el éxito sobre la base del a eficiencia. La entrega confiable, el cumplimiento de sus tareas y seguir un cronograma sin contratiempos es clave."}]}
+    { id: 1, titulo: "1. CARACTERÍSTICAS DOMINANTES", items: [{l: "A", d: "La organización es un lugar muy personal. Es como una familia extendida."}, {l: "B", d: "La organización es un lugar muy dinámico y emprendedor."}, {l: "C", d: "La organización es muy orientada resultados."}, {l: "D", d: "La organización es un lugar muy controlado y estructurado."}]},
+    { id: 2, titulo: "2. LIDERAZGO ORGANIZACIONAL", items: [{l: "A", d: "Ejemplo de guía, que orienta y brinda entrenamiento."}, {l: "B", d: "Ejemplo de mentalidad emprendedora e innovación."}, {l: "C", d: "Agresivo enfoque orientado a resultados."}, {l: "D", d: "Ejemplo de coordinación, organización y eficiencia."}]},
+    { id: 3, titulo: "3. GESTIÓN DE LOS EMPLEADOS", items: [{l: "A", d: "Trabajo en equipo, consenso y participación."}, {l: "B", d: "Riesgos individuales, innovación y libertad."}, {l: "C", d: "Competencia, altas exigencias y logros."}, {l: "D", d: "Seguridad, conformidad y previsibilidad."}]},
+    { id: 4, titulo: "4. COHESIÓN ORGANIZACIONAL", items: [{l: "A", d: "Lealtad y confianza mutua."}, {l: "B", d: "Compromiso con la innovación y desarrollo."}, {l: "C", d: "Énfasis sobre el logro y cumplimiento de metas."}, {l: "D", d: "Reglas y políticas formales."}]},
+    { id: 5, titulo: "5. ÉNFASIS ESTRATÉGICO", items: [{l: "A", d: "Desarrollo humano, confianza y participación."}, {l: "B", d: "Adquisición de nuevos recursos y desafíos."}, {l: "C", d: "Acciones competitivas y ganar mercado."}, {l: "D", d: "Permanencia, estabilidad y eficiencia."}]},
+    { id: 6, titulo: "6. CRITERIO DE ÉXITO", items: [{l: "A", d: "Desarrollo de RRHH, trabajo en equipo y compromiso."}, {l: "B", d: "Contar con productos únicos y novedosos."}, {l: "C", d: "Vencer y superar a la competencia."}, {l: "D", d: "Eficiencia y entrega confiable."}]}
 ];
 
 const listaValores = [
@@ -134,10 +146,10 @@ function crearTablas() {
         let tabla = `<div class="dimension-title">${sec.titulo}</div><table><thead><tr><th>Escenario</th><th class="input-col">ACTUAL</th><th class="input-col">DESEADA</th></tr></thead><tbody>`;
         sec.items.forEach(item => {
             tabla += `<tr><td><b>${item.l}.</b> ${item.d}</td>
-                <td class="input-col"><input type="number" class="act_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td>
-                <td class="input-col"><input type="number" class="des_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td></tr>`;
+                <td class="input-col"><input type="number" min="0" max="100" class="act_${sec.id}_${item.l}" oninput="validarNumero(this); calc(${sec.id})"></td>
+                <td class="input-col"><input type="number" min="0" max="100" class="des_${sec.id}_${item.l}" oninput="validarNumero(this); calc(${sec.id})"></td></tr>`;
         });
-        tabla += `<tr class="total-row"><td align="right">TOTAL:</td><td><span id="tot-act-${sec.id}">0</span></td><td><span id="tot-des-${sec.id}">0</span></td></tr></tbody></table>`;
+        tabla += `<tr class="total-row"><td align="right">TOTAL (100):</td><td><span id="tot-act-${sec.id}" class="status-red">0</span></td><td><span id="tot-des-${sec.id}" class="status-red">0</span></td></tr></tbody></table>`;
         container.innerHTML += tabla;
     });
     const vBody = document.getElementById('valoresBody');
@@ -148,12 +160,24 @@ function crearTablas() {
     });
 }
 
+function validarNumero(input) {
+    if (input.value < 0) input.value = 0;
+    if (input.value > 100) input.value = 100;
+}
+
 function calc(id) {
     let sa = 0, sd = 0;
     document.querySelectorAll(`.act_${id}_A, .act_${id}_B, .act_${id}_C, .act_${id}_D`).forEach(i => sa += Number(i.value) || 0);
     document.querySelectorAll(`.des_${id}_A, .des_${id}_B, .des_${id}_C, .des_${id}_D`).forEach(i => sd += Number(i.value) || 0);
-    document.getElementById(`tot-act-${id}`).innerText = sa;
-    document.getElementById(`tot-des-${id}`).innerText = sd;
+    
+    const dAct = document.getElementById(`tot-act-${id}`);
+    const dDes = document.getElementById(`tot-des-${id}`);
+    
+    dAct.innerText = sa;
+    dAct.className = (sa === 100) ? "status-green" : "status-red";
+    
+    dDes.innerText = sd;
+    dDes.className = (sd === 100) ? "status-green" : "status-red";
 }
 
 function nextStep(step) {
@@ -162,7 +186,7 @@ function nextStep(step) {
         for(let id of ids) if(!document.getElementById(id).value) { alert("Completa los datos sociodemográficos."); return; }
         for(let i=1; i<=6; i++) {
             if(document.getElementById(`tot-act-${i}`).innerText !== "100" || document.getElementById(`tot-des-${i}`).innerText !== "100") {
-                alert("Cada sección OCAI debe sumar 100."); return;
+                alert("Cada sección OCAI debe sumar exactamente 100."); return;
             }
         }
     }
@@ -180,13 +204,13 @@ async function enviarTodo() {
     const payload = {};
     for(let v of listaValores) {
         let r = document.querySelector(`input[name="${v.id}"]:checked`);
-        if(!r) { alert("Responde todos los valores."); return; }
+        if(!r) { alert("Por favor responde todos los valores."); return; }
         payload[v.id] = r.value;
     }
     const btn = document.getElementById('btnEnviar');
     btn.innerText = "Enviando..."; btn.disabled = true;
     ['empresa', 'edad', 'genero', 'equipo', 'antiguedad', 'rol', 'desc_cultura_propia', 'desc_cultura_grupo'].forEach(id => payload[id] = document.getElementById(id).value);
-    document.querySelectorAll('input[type="number"]').forEach(i => { if(i.className) payload[i.className] = i.value || 0; });
+    document.querySelectorAll('input[type="number"]').forEach(i => { if(i.className && i.className.includes('act_') || i.className.includes('des_')) payload[i.className.split(' ')[0]] = i.value || 0; });
 
     try {
         await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
