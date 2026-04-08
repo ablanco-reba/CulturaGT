@@ -43,6 +43,8 @@
         .btn-container { text-align: center; margin-top: 40px; padding: 20px; border-top: 2px solid #eee; }
         .btn { padding: 15px 40px; border-radius: 30px; cursor: pointer; font-size: 1.1em; font-weight: bold; border: none; transition: 0.3s; margin: 10px; }
         .btn-next { background: var(--accent); color: white; }
+        /* Estilo para el botón Volver */
+        .btn-prev { background: #95a5a6; color: white; }
         .btn-send { background: var(--success); color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         .btn:hover { opacity: 0.9; transform: scale(1.02); }
 
@@ -139,11 +141,6 @@
             </div>
 
             <div class="section-header">Cuestionario OCAI</div>
-            <div class="intro-box" style="margin-top:15px; border-left-color: #e67e22;">
-                <p>A continuación, verás 6 dimensiones que se aperturan en 4 ítems cada una. Estas intentan indagar cómo percibís la experiencia en tu organización en estos momentos, y luego, cómo creés que debería ser en el futuro para alcanzar sus objetivos de negocio.</p>
-                <p>En la encuesta <strong>“la organización”</strong> se refiere a la empresa en la que trabajas actualmente.</p>
-            </div>
-
             <div id="dimensionesContainer"></div>
             
             <div class="btn-container">
@@ -162,6 +159,7 @@
                 <textarea id="desc_cultura_grupo" placeholder="Escribe aquí..."></textarea>
             </div>
             <div class="btn-container">
+                <button type="button" class="btn btn-prev" onclick="goToStep(1)">Volver a la Sección Anterior</button>
                 <button type="button" class="btn btn-next" onclick="nextStep(3)">Pasar a la Siguiente Sección (3/3)</button>
             </div>
         </div>
@@ -177,6 +175,7 @@
             </table>
 
             <div class="btn-container">
+                <button type="button" class="btn btn-prev" onclick="goToStep(2)">Volver a la Sección Anterior</button>
                 <button type="button" class="btn btn-send" id="btnEnviar" onclick="enviarTodo()">Finalizar</button>
             </div>
         </div>
@@ -216,7 +215,7 @@ const contenidoDim = [
         {l: "A", d: "La organización pone el énfasis en el desarrollo humano. La alta confianza, apertura y participación persisten."},
         {l: "B", d: "La organización pone el énfasis en la adquisición de nuevos recursos y la creación de nuevos desafíos. Se valoran el intentar cosas nuevas y la búsqueda de oportunidades."},
         {l: "C", d: "La organización pone el énfasis en acciones competitivas y el cumplimiento de logros. Los objetivos ambiciosos y el ganar posiciones de mercado son temas dominantes."},
-        {l: "D", d: "La organización pone el énfasis en la permanencia y la estabilidad. La eficiencia, el control y el buen funcionamiento son importantes."}
+        {l: "D", d: "La organización pone el énfasis en la permanencia y la estabilidad. La eficiencia, el conrol y el buen funcionamiento son importantes."}
     ]},
     { id: 6, titulo: "6. CRITERIO DE ÉXITO", items: [
         {l: "A", d: "La organización define el éxito sobre la base del desarrollo de los recursos humanos, el trabajo en equipo, el compromiso de los empleados y la preocupación por las personas."},
@@ -279,6 +278,10 @@ function nextStep(step) {
             alert("Por favor completa las respuestas abiertas."); return;
         }
     }
+    goToStep(step);
+}
+
+function goToStep(step) {
     document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
     document.getElementById('step' + step).classList.add('active');
     document.getElementById('stepText').innerText = `Sección ${step} de 3`;
@@ -305,15 +308,12 @@ async function enviarTodo() {
 
     try {
         await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-        
-        // Cambio de pantalla por éxito
         document.getElementById('mainContainer').innerHTML = `
             <div style="text-align:center; padding: 50px;">
                 <h2 style="color:var(--success);">¡Envío Exitoso!</h2>
                 <p style="font-size:1.2em;">Muchas gracias por tu participación. Tus respuestas fueron entregadas con éxito.</p>
                 <div style="font-size: 50px; margin-top:20px;">✅</div>
             </div>`;
-            
     } catch (e) {
         alert("Error de conexión. Prueba de nuevo."); btn.disabled = false; btn.innerText = "Finalizar";
     }
