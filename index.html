@@ -51,7 +51,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="mainContainer">
     <h1>Cuestionario de Cultura Organizacional</h1>
     
     <div class="step-indicator" id="stepText">Sección 1 de 3</div>
@@ -60,16 +60,13 @@
         
         <div class="form-step active" id="step1">
             <div class="intro-box">
-                <p>Te invitamos a participar en una investigación clave para entender la cultura organizacional de las empresas financieras de <strong>Grupo Transatlántica</strong>. Este estudio busca capturar cómo vivimos hoy nuestra organización y hacia dónde nos gustaría proyectarla para alcanzar nuestros objetivos de negocio.</p>
-                <p>Los resultados de este diagnóstico serán utilizados con fines de análisis interno y, a su vez, formarán parte de un proyecto de <strong>investigación académica para la Maestría en Gestión y Dirección de RR.HH. de la Universidad de San Andrés</strong>.</p>
-                
-                <p>Por favor, califica cada afirmación distribuyendo <strong>100 puntos</strong> entre las alternativas A, B, C, y D; dependiendo de cuán similar es la descripción planteada sobre tu organización (100 sería exactamente igual a cómo es tu organización, y 0 nada parecido). <strong>La suma total de puntos en cada pregunta debe ser igual a 100.</strong></p>
-                
+                <p>En esta primera sección deberás completar el siguiente cuestionario. Por favor, califica cada afirmación distribuyendo <strong>100 puntos</strong> entre las alternativas A, B, C, y D; dependiendo de cuán similar es la descripción planteada sobre tu organización (100 sería exactamente igual a cómo es tu organización, y 0 nada parecido). <strong>La suma total de puntos en cada pregunta debe ser igual a 100.</strong></p>
+                <p>Este ejercicio se realiza dos veces:<br>
+                <strong>Momento actual:</strong> Refleja la percepción de cómo funciona la organización hoy.<br>
+                <strong>Momento deseado:</strong> Refleja cómo debería ser la cultura para alcanzar el éxito futuro.</p>
                 <p style="font-style: italic; color: #555;">Como suele suceder en los cuestionarios, es posible que te sientas tentado de responder "depende". En algunos casos puede que no encuentres gran diferencia entre algunos enunciados y otros. No te detengas por eso. Aunque el cuestionario no resulte demasiado preciso, te va a dar algunas pistas útiles de todas maneras. Cuando dudes no te detengas a pensar demasiado, sigue a tu intuición, elige la primera reacción.</p>
-
-                <p><strong>Tu visión es fundamental:</strong> Tu participación es voluntaria, te tomará aproximadamente 15 minutos y es vital para obtener una imagen real de nuestra compañía.</p>
-                <p><strong>Privacidad y Confidencialidad:</strong> La información se procesará de manera agregada y bajo estrictas normas de confidencialidad. Las respuestas son <strong>100% anónimas</strong>; los datos sociodemográficos se solicitan únicamente para realizar análisis comparativos generales por grupos.</p>
-                <p>Muchas gracias por tu tiempo y sinceridad.</p>
+                <p>Tu participación te tomará aproximadamente 15 minutos.</p>
+                <p><strong>Confidencialidad:</strong> La información se procesará de manera agregada y bajo estrictas normas de confidencialidad. Las respuestas son <strong>100% anónimas</strong>; los datos sociodemográficos se solicitan únicamente para realizar análisis comparativos generales por grupos.</p>
             </div>
 
             <div class="section-header">SECCIÓN 1: Datos Sociodemográficos</div>
@@ -82,9 +79,21 @@
                         <option value="Reba">Reba</option>
                         <option value="TSA Cambio">TSA Cambio</option>
                         <option value="TSA Servicios">TSA Servicios</option>
+                        <option value="TSA Desarrollos">TSA Desarrollos</option>
+                        <option value="Aurax">Aurax</option>
+                        <option value="Otras">Otras</option>
                     </select>
                 </div>
-                <div class="socio-item"><label>Edad:</label><input type="number" id="edad" placeholder="Ej: 35"></div>
+                <div class="socio-item">
+                    <label>Edad:</label>
+                    <select id="edad">
+                        <option value="">Seleccione rango...</option>
+                        <option value="Menos de 30 - Generación Z">Menos de 30 - Generación Z</option>
+                        <option value="30 a 45 - Milleniall">30 a 45 - Milleniall</option>
+                        <option value="46 a 60 - Generación X">46 a 60 - Generación X</option>
+                        <option value="Más de 60 - Baby Boomer">Más de 60 - Baby Boomer</option>
+                    </select>
+                </div>
                 <div class="socio-item">
                     <label>Género:</label>
                     <select id="genero">
@@ -111,6 +120,10 @@
                         <option value="Marketing">Marketing</option>
                         <option value="Producto y Growth">Producto y Growth</option>
                         <option value="Atención al Cliente">Atención al Cliente</option>
+                        <option value="Cajas y/o Tesorería">Cajas y/o Tesorería</option>
+                        <option value="Compras">Compras</option>
+                        <option value="Control de Gestión">Control de Gestión</option>
+                        <option value="Prefiero no decirlo / No encontre mi sector">Prefiero no decirlo / No encontre mi sector</option>
                     </select>
                 </div>
                 <div class="socio-item"><label>Antigüedad en el Grupo Transatlántica (años):</label><input type="number" id="antiguedad" placeholder="Ej: 5"></div>
@@ -128,7 +141,7 @@
             <div class="section-header">Cuestionario OCAI</div>
             <div class="intro-box" style="margin-top:15px; border-left-color: #e67e22;">
                 <p>A continuación, verás 6 dimensiones que se aperturan en 4 ítems cada una. Estas intentan indagar cómo percibís la experiencia en tu organización en estos momentos, y luego, cómo creés que debería ser en el futuro para alcanzar sus objetivos de negocio.</p>
-                <p>En la encuesta <strong>“la organización”</strong> se refiere a la empresa en la que trabajas actualmente (TSA Bursátil, Reba, TSA Cambio o TSA Servicios).</p>
+                <p>En la encuesta <strong>“la organización”</strong> se refiere a la empresa en la que trabajas actualmente.</p>
             </div>
 
             <div id="dimensionesContainer"></div>
@@ -141,7 +154,7 @@
         <div class="form-step" id="step2">
             <div class="section-header">SECCIÓN 2: Percepción de Cultura</div>
             <div class="socio-item" style="margin-top:20px;">
-                <label>1) ¿Con qué palabra o palabras (brevemente) describirías la cultura de la organización en la que vos te desempeñas?</label>
+                <label>1) ¿Con qué palabra o palabras (brevemente) describirías la cultura actual de la organización en la que vos te desempeñas?</label>
                 <textarea id="desc_cultura_propia" placeholder="Escribe aquí..."></textarea>
             </div>
             <div class="socio-item" style="margin-top:20px;">
@@ -156,7 +169,7 @@
         <div class="form-step" id="step3">
             <div class="section-header">SECCIÓN 3: Valoración de Valores</div>
             <p>¿Qué tanto te representan los valores actuales del grupo? ¿Sentís que se viven en tu día a día laboral?</p>
-            <p><small> 1)Nada representado: No me identifico y no veo que se apliquen. | 2) Poco representado: Me identifico poco y rara vez se ven en la práctica. | 3) Neutral / Regular: Me identifico a veces y se viven de forma inconsistente. | 4) Representado: Me identifico y los percibo en la mayoría de mis tareas. | 5) Totalmente representado: Me identifico plenamente y los vivo en mi día a día.</small></p>
+            <p><small> 1)Nada representado | 2) Poco representado | 3) Neutral / Regular | 4) Representado | 5) Totalmente representado</small></p>
             
             <table class="likert-table">
                 <thead><tr><th>Valor</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
@@ -164,7 +177,7 @@
             </table>
 
             <div class="btn-container">
-                <button type="button" class="btn btn-send" id="btnEnviar" onclick="enviarTodo()">Enviar al Sistema</button>
+                <button type="button" class="btn btn-send" id="btnEnviar" onclick="enviarTodo()">Finalizar</button>
             </div>
         </div>
 
@@ -172,7 +185,7 @@
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyni7iPQcTv-q4vGslck8i_ARF4pPRLzoQUG5b8Mj6GBUmSaLK7iF6IINELQD1OVOHhFQ/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbtrSeMfqHF9ulhEnRwpM2GbSMDzwV9-KVrq8oh2NftfkJkeurh-x0kg4DR39X2hwbL5w/exec";
 
 const contenidoDim = [
     { id: 1, titulo: "1. CARACTERÍSTICAS DOMINANTES", items: [
@@ -292,10 +305,17 @@ async function enviarTodo() {
 
     try {
         await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-        alert("¡Éxito! Tu participación ha sido registrada correctamente.");
-        location.reload();
+        
+        // Cambio de pantalla por éxito
+        document.getElementById('mainContainer').innerHTML = `
+            <div style="text-align:center; padding: 50px;">
+                <h2 style="color:var(--success);">¡Envío Exitoso!</h2>
+                <p style="font-size:1.2em;">Muchas gracias por tu participación. Tus respuestas fueron entregadas con éxito.</p>
+                <div style="font-size: 50px; margin-top:20px;">✅</div>
+            </div>`;
+            
     } catch (e) {
-        alert("Error de conexión. Prueba de nuevo."); btn.disabled = false; btn.innerText = "Reintentar";
+        alert("Error de conexión. Prueba de nuevo."); btn.disabled = false; btn.innerText = "Finalizar";
     }
 }
 
