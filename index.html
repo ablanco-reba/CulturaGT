@@ -22,8 +22,8 @@
         .dimension-title { background: var(--accent); color: white; padding: 12px 20px; font-weight: bold; margin-top: 40px; border-radius: 5px 5px 0 0; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 10px; table-layout: fixed; }
         th { background: #f1f1f1; padding: 12px; font-size: 0.8em; border: 1px solid #ddd; }
-        td { border: 1px solid #ddd; padding: 12px; vertical-align: middle; font-size: 0.9em; }
-        .input-col { width: 15%; text-align: center; }
+        td { border: 1px solid #ddd; padding: 12px; vertical-align: middle; font-size: 0.9em; overflow-wrap: break-word; }
+        .input-col { width: 85px; text-align: center; }
         input[type="number"] { width: 60px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; }
         .total-row { background: #f9f9f9; font-weight: bold; }
         .likert-table th { font-size: 0.8em; text-align: center; }
@@ -38,86 +38,89 @@
     </style>
 </head>
 <body>
+
 <div class="container" id="mainContainer">
     <h1>Cuestionario de Cultura Organizacional</h1>
     <div class="step-indicator" id="stepText">Sección 1 de 3</div>
+
     <form id="combinedForm">
         <div class="form-step active" id="step1">
             <div class="intro-box">
-                <p>Por favor, califica cada afirmación distribuyendo <strong>100 puntos</strong> entre las alternativas A, B, C, y D. La suma debe ser exactamente 100.</p>
-                <p><strong>Actual:</strong> Cómo es hoy. <strong>Deseada:</strong> Cómo debería ser.</p>
-                <p>Tu participación tomará aproximadamente 15 minutos. Las respuestas son 100% anónimas.</p>
+                <p>En esta primera sección deberás completar el siguiente cuestionario. Por favor, califica cada afirmación distribuyendo <strong>100 puntos</strong> entre las alternativas A, B, C, y D; dependiendo de cuán similar es la descripción planteada sobre tu organización (100 sería exactamente igual a cómo es tu organización, y 0 nada parecido). <strong>La suma total de puntos en cada pregunta debe ser igual a 100.</strong></p>
+                <p>Este ejercicio se realiza dos veces:<br>
+                <strong>Momento actual:</strong> Refleja la percepción de cómo funciona la organización hoy.<br>
+                <strong>Momento deseado:</strong> Refleja cómo debería ser la cultura para alcanzar el éxito futuro.</p>
+                <p style="font-style: italic; color: #555;">Como suele suceder en los cuestionarios, es posible que te sientas tentado de responder "depende". En algunos casos puede que no encuentres gran diferencia entre algunos enunciados y otros. No te detengas por eso. Aunque el cuestionario no resulte demasiado preciso, te va a dar algunas pistas útiles de todas maneras. Cuando dudes no te detengas a pensar demasiado, sigue a tu intuición, elige la primera reacción.</p>
             </div>
+
             <div class="section-header">SECCIÓN 1: Datos Sociodemográficos</div>
             <div class="socio-grid">
                 <div class="socio-item"><label>Empresa:</label><select id="empresa"><option value="">Seleccione...</option><option value="TSA Bursatil">TSA Bursátil</option><option value="Reba">Reba</option><option value="TSA Cambio">TSA Cambio</option><option value="TSA Servicios">TSA Servicios</option><option value="TSA Desarrollos">TSA Desarrollos</option><option value="Aurax">Aurax</option><option value="Otras">Otras</option></select></div>
-                <div class="socio-item">
-                    <label>Edad:</label>
-                    <select id="edad">
-                        <option value="">Seleccione rango...</option>
-                        <option value="Menos de 30">Menos de 30</option>
-                        <option value="30 a 45">30 a 45</option>
-                        <option value="46 a 60">46 a 60</option>
-                        <option value="Más de 60">Más de 60</option>
-                    </select>
-                </div>
+                <div class="socio-item"><label>Edad:</label><select id="edad"><option value="">Seleccione...</option><option value="Menos de 30">Menos de 30</option><option value="30 a 45">30 a 45</option><option value="46 a 60">46 a 60</option><option value="Más de 60">Más de 60</option></select></div>
                 <div class="socio-item"><label>Género:</label><select id="genero"><option value="">Seleccione...</option><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option><option value="Otro">Otro</option></select></div>
                 <div class="socio-item">
                     <label>Equipo:</label>
                     <select id="equipo">
                         <option value="">Seleccione...</option>
-                        <option value="Negocio y Comercial">Negocio y Comercial</option><option value="Operaciones">Operaciones</option>
-                        <option value="RRHH">RRHH</option><option value="PLAyFT">PLAyFT</option>
-                        <option value="Contabilidad y Administración">Contabilidad y Administración</option><option value="Finanzas">Finanzas</option>
-                        <option value="Tecnología">Tecnología, Ingeniería, Datos, Sistemas</option><option value="Riesgos">Riesgos</option>
-                        <option value="Legales">Legales</option><option value="Procesos">Procesos</option>
-                        <option value="Marketing">Marketing</option><option value="Producto y Growth">Producto y Growth</option>
-                        <option value="Atención al Cliente">Atención al Cliente</option><option value="Cajas y/o Tesorería">Cajas y/o Tesorería</option>
-                        <option value="Compras">Compras</option><option value="Control de Gestión">Control de Gestión</option>
-                        <option value="Prefiero no decirlo / No encontre mi sector">Prefiero no decirlo / No encontre mi sector</option>
+                        <option value="Negocio y Comercial">Negocio y Comercial</option><option value="Operaciones">Operaciones</option><option value="RRHH">RRHH</option><option value="PLAyFT">PLAyFT</option><option value="Contabilidad y Administración">Contabilidad y Administración</option><option value="Finanzas">Finanzas</option><option value="Tecnología">Tecnología, Ingeniería, Datos, Sistemas</option><option value="Riesgos">Riesgos</option><option value="Legales">Legales</option><option value="Procesos">Procesos</option><option value="Marketing">Marketing</option><option value="Producto y Growth">Producto y Growth</option><option value="Atención al Cliente">Atención al Cliente</option><option value="Cajas y/o Tesorería">Cajas y/o Tesorería</option><option value="Compras">Compras</option><option value="Control de Gestión">Control de Gestión</option><option value="Otros">Otros</option>
                     </select>
                 </div>
-                <div class="socio-item"><label>Antigüedad:</label><input type="number" id="antiguedad"></div>
+                <div class="socio-item"><label>Antigüedad (años):</label><input type="number" id="antiguedad"></div>
                 <div class="socio-item"><label>Rol:</label><select id="rol"><option value="">Seleccione...</option><option value="Analista">Analista</option><option value="Lider">Líder</option><option value="Gerente">Gerente/Director</option></select></div>
             </div>
+
             <div class="section-header">Cuestionario OCAI</div>
             <div class="intro-box" style="margin-top:15px; border-left-color: #e67e22;">
-                <p>A continuación, verás 6 dimensiones que se aperturan en 4 ítems cada una. Estas intentan indagar cómo percibís la experiencia en tu organización actualmente y en el futuro.</p>
+                <p>A continuación, verás 6 dimensiones que se aperturan en 4 ítems cada una. Estas intentan indagar cómo percibís la experiencia en tu organización en estos momentos, y luego, cómo creés que debería ser en el futuro para alcanzar sus objetivos de negocio.</p>
                 <p>En la encuesta <strong>“la organización”</strong> se refiere a la empresa en la que trabajas actualmente.</p>
             </div>
+            
             <div id="dimensionesContainer"></div>
-            <div class="btn-container"><button type="button" class="btn btn-next" onclick="nextStep(2)">Siguiente Sección (2/3)</button></div>
+            
+            <div class="btn-container">
+                <button type="button" class="btn btn-next" onclick="nextStep(2)">Siguiente Sección (2/3)</button>
+            </div>
         </div>
 
         <div class="form-step" id="step2">
             <div class="section-header">SECCIÓN 2: Percepción de Cultura</div>
-            <div class="socio-item" style="margin-top:20px;"><label>1) ¿Con qué palabras describirías la cultura actual de tu organización?</label><textarea id="desc_cultura_propia"></textarea></div>
-            <div class="socio-item" style="margin-top:20px;"><label>2) ¿Con qué palabras describirías la cultura actual del Grupo Transatlántica?</label><textarea id="desc_cultura_grupo"></textarea></div>
-            <div class="btn-container"><button type="button" class="btn btn-prev" onclick="goToStep(1)">Volver</button><button type="button" class="btn btn-next" onclick="nextStep(3)">Siguiente Sección (3/3)</button></div>
+            <div class="socio-item" style="margin-top:20px;"><label>1) ¿Con qué palabra o palabras (brevemente) describirías la cultura actual de la organización en la que vos te desempeñas?</label><textarea id="desc_cultura_propia"></textarea></div>
+            <div class="socio-item" style="margin-top:20px;"><label>2) ¿Con qué palabra o palabras (brevemente) describirías a la cultura actual del Grupo Transatlántica?</label><textarea id="desc_cultura_grupo"></textarea></div>
+            <div class="btn-container">
+                <button type="button" class="btn btn-prev" onclick="goToStep(1)">Volver</button>
+                <button type="button" class="btn btn-next" onclick="nextStep(3)">Siguiente Sección (3/3)</button>
+            </div>
         </div>
 
         <div class="form-step" id="step3">
             <div class="section-header">SECCIÓN 3: Valoración de Valores</div>
+            <p>¿Qué tanto te representan los valores actuales del grupo? ¿Sentís que se viven en tu día a día laboral?</p>
             <div class="intro-box">
                 <strong>Escala de representación:</strong><br>
-                1) Nada | 2) Poco | 3) Neutral | 4) Representado | 5) Totalmente representado
+                1) Nada representado | 2) Poco representado | 3) Neutral | 4) Representado | 5) Totalmente representado
             </div>
-            <table class="likert-table"><thead><tr><th>Valor</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody id="valoresBody"></tbody></table>
-            <div class="btn-container"><button type="button" class="btn btn-prev" onclick="goToStep(2)">Volver</button><button type="button" class="btn btn-send" id="btnEnviar" onclick="enviarTodo()">Finalizar</button></div>
+            <table class="likert-table">
+                <thead><tr><th>Valor</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+                <tbody id="valoresBody"></tbody>
+            </table>
+            <div class="btn-container">
+                <button type="button" class="btn btn-prev" onclick="goToStep(2)">Volver</button>
+                <button type="button" class="btn btn-send" id="btnEnviar" onclick="enviarTodo()">Finalizar</button>
+            </div>
         </div>
     </form>
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnc7I5S7ZIT-tcF2XXBOQQ9H636sw26d2j3Auh_UvVAHZm9BgUC_tBUovuMV7psdTw7w/exec"; 
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnc7I5S7ZIT-tcF2XXBOQQ9H636sw26d2j3Auh_UvVAHZm9BgUC_tBUovuMV7psdTw7w/exec";
 
 const contenidoDim = [
     { id: 1, titulo: "1. CARACTERÍSTICAS DOMINANTES", items: [{l: "A", d: "La organización es un lugar muy personal. Es como una familia extendida. Las personas comparten mucho sobre ellos mismos en sus conversaciones."}, {l: "B", d: "La organización es un lugar muy dinámico y emprendedor. La gente está dispuesta a hacer valer sus ideas, a arriesgarse y a tomar riesgos."}, {l: "C", d: "La organización es muy orientada resultados Una preocupación importante es el lograr culminar los trabajos. La gente es muy competitiva y orientada hacia el resultado."}, {l: "D", d: "La organización es un lugar muy controlado y estructurado. Los procedimientos formales generalmente rigen lo que la gente hace."}]},
-    { id: 2, titulo: "2. LIDERAZGO", items: [{l: "A", d: "El liderazgo de la organización es por lo general considerado como ejemplo de guía, que orienta y brinda entrenamiento."}, {l: "B", d: "El liderazgo en la organización es considerado como ejemplo de mentalidad emprendedora, de innovación y de asunción de riesgos."}, {l: "C", d: "El liderazgo en la organización en general es considerado por su agresivo enfoque orientado a resultados, y que deja de lado todo lo que no tienen directamente que ver con esos resultados."}, {l: "D", d: "El liderazgo en la organización es por lo general ejemplo de coordinación, organización y el aseguramiento de la eficiencia."}]},
-    { id: 3, titulo: "3. GESTIÓN", items: [{l: "A", d: "El estilo gerencial de la organización se caracteriza por el trabajo en equipo, el consenso y la participación."}, {l: "B", d: "El estilo gerencial de la organización se caracteriza por la toma de riesgos individuales, la innovación, la libertad y la singularidad."}, {l: "C", d: "El estilo gerencial de la organización se caracteriza por la competencia, altas exigencias y logros."}, {l: "D", d: "El estilo gerencial de la organización se caracteriza por la seguridad del empleo, la conformidad, la previsibilidad y la estabilidad en las relaciones."}]},
-    { id: 4, titulo: "4. COHESIÓN", items: [{l: "A", d: "Lo que mantiene unida a la organización es la lealtad y la confianza mutua. El compromiso con la organización es alto."}, {l: "B", d: "Lo que mantiene unida a la organización es el compromiso con la innovación y el desarrollo. Hay un énfasis en estar a la vanguardia."}, {l: "C", d: "Lo que mantiene unida a la organización es el énfasis sobre el logro y el cumplimiento de metas. La vehemencia y el ganar son temas comunes en las conversaciones."}, {l: "D", d: "Lo que mantiene unida a la organización son las reglas y políticas formales. Es importante mantener una organización que funcione sin contratiempos."}]},
-    { id: 5, titulo: "5. ÉNFASIS", items: [{l: "A", d: "La organización pone el énfasis en el desarrollo humano. La alta confianza, apertura y participación persisten."}, {l: "B", d: "La organización pone el énfasis en la adquisición de nuevos recursos y la creación de nuevos desafíos. Se valoran el intentar cosas nuevas y la búsqueda de oportunidades."}, {l: "C", d: "La organización pone el énfasis en acciones competitivas y el cumplimiento de logros. Los objetivos ambiciosos y el ganar posiciones de mercado son temas dominantes."}, {l: "D", d: "La organización pone el énfasis en la permanencia y la estabilidad. La eficiencia, el conrol y el buen funcionamiento son importantes."}]},
-    { id: 6, titulo: "6. ÉXITO", items: [{l: "A", d: "La organización define el éxito sobre la base del desarrollo de los recursos humanos, el trabajo en equipo, el compromiso de los empleados y la preocupación por las personas."}, {l: "B", d: "La organización define el éxito sobre la base del contar productos únicos y novedosos. La organización es líder en sus productos y es innovadora."}, {l: "C", d: "La organización define el éxito sobre la base vencer y superar a la competencia. El liderazgo competitivo en el mercado es clave."}, {l: "D", d: "La organización define el éxito sobre la base del a eficiencia. La entrega confiable, el cumplimiento de sus tareas y seguir un cronograma sin contratiempos es clave."}]}
+    { id: 2, titulo: "2. LIDERAZGO ORGANIZACIONAL", items: [{l: "A", d: "El liderazgo de la organización es por lo general considerado como ejemplo de guía, que orienta y brinda entrenamiento."}, {l: "B", d: "El liderazgo en la organización es considerado como ejemplo de mentalidad emprendedora, de innovación y de asunción de riesgos."}, {l: "C", d: "El liderazgo en la organización en general es considerado por su agresivo enfoque orientado a resultados, y que deja de lado todo lo que no tienen directamente que ver con esos resultados."}, {l: "D", d: "El liderazgo en la organización es por lo general ejemplo de coordinación, organización y el aseguramiento de la eficiencia."}]},
+    { id: 3, titulo: "3. GESTIÓN DE LOS EMPLEADOS", items: [{l: "A", d: "El estilo gerencial de la organización se caracteriza por el trabajo en equipo, el consenso y la participación."}, {l: "B", d: "El estilo gerencial de la organización se caracteriza por la toma de riesgos individuales, la innovación, la libertad y la singularidad."}, {l: "C", d: "El estilo gerencial de la organización se caracteriza por la competencia, altas exigencias y logros."}, {l: "D", d: "El estilo gerencial de la organización se caracteriza por la seguridad del empleo, la conformidad, la previsibilidad y la estabilidad en las relaciones."}]},
+    { id: 4, titulo: "4. COHESIÓN ORGANIZACIONAL", items: [{l: "A", d: "Lo que mantiene unida a la organización es la lealtad y la confianza mutua. El compromiso con la organización es alto."}, {l: "B", d: "Lo que mantiene unida a la organización es el compromiso con la innovación y el desarrollo. Hay un énfasis en estar a la vanguardia."}, {l: "C", d: "Lo que mantiene unida a la organización es el énfasis sobre el logro y el cumplimiento de metas. La vehemencia y el ganar son temas comunes en las conversaciones."}, {l: "D", d: "Lo que mantiene unida a la organización son las reglas y políticas formales. Es importante mantener una organización que funcione sin contratiempos."}]},
+    { id: 5, titulo: "5. ÉNFASIS ESTRATÉGICO", items: [{l: "A", d: "La organización pone el énfasis en el desarrollo humano. La alta confianza, apertura y participación persisten."}, {l: "B", d: "La organización pone el énfasis en la adquisición de nuevos recursos y la creación de nuevos desafíos. Se valoran el intentar cosas nuevas y la búsqueda de oportunidades."}, {l: "C", d: "La organización pone el énfasis en acciones competitivas y el cumplimiento de logros. Los objetivos ambiciosos y el ganar posiciones de mercado son temas dominantes."}, {l: "D", d: "La organización pone el énfasis en la permanencia y la estabilidad. La eficiencia, el conrol y el buen funcionamiento son importantes."}]},
+    { id: 6, titulo: "6. CRITERIO DE ÉXITO", items: [{l: "A", d: "La organización define el éxito sobre la base del desarrollo de los recursos humanos, el trabajo en equipo, el compromiso de los empleados y la preocupación por las personas."}, {l: "B", d: "La organización define el éxito sobre la base del contar productos únicos y novedosos. La organización es líder en sus productos y es innovadora."}, {l: "C", d: "La organización define el éxito sobre la base vencer y superar a la competencia. El liderazgo competitivo en el mercado es clave."}, {l: "D", d: "La organización define el éxito sobre la base del a eficiencia. La entrega confiable, el cumplimiento de sus tareas y seguir un cronograma sin contratiempos es clave."}]}
 ];
 
 const listaValores = [
@@ -128,13 +131,13 @@ const listaValores = [
 function crearTablas() {
     const container = document.getElementById('dimensionesContainer');
     contenidoDim.forEach(sec => {
-        let tabla = `<div class="dimension-title">${sec.titulo}</div><table><thead><tr><th>Escenario</th><th>ACTUAL</th><th>DESEADA</th></tr></thead><tbody>`;
+        let tabla = `<div class="dimension-title">${sec.titulo}</div><table><thead><tr><th>Escenario</th><th class="input-col">ACTUAL</th><th class="input-col">DESEADA</th></tr></thead><tbody>`;
         sec.items.forEach(item => {
             tabla += `<tr><td><b>${item.l}.</b> ${item.d}</td>
-                <td><input type="number" class="act_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td>
-                <td><input type="number" class="des_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td></tr>`;
+                <td class="input-col"><input type="number" class="act_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td>
+                <td class="input-col"><input type="number" class="des_${sec.id}_${item.l}" oninput="calc(${sec.id})"></td></tr>`;
         });
-        tabla += `<tr class="total-row"><td align="right">TOTAL (Debe ser 100):</td><td><span id="tot-act-${sec.id}">0</span></td><td><span id="tot-des-${sec.id}">0</span></td></tr></tbody></table>`;
+        tabla += `<tr class="total-row"><td align="right">TOTAL:</td><td><span id="tot-act-${sec.id}">0</span></td><td><span id="tot-des-${sec.id}">0</span></td></tr></tbody></table>`;
         container.innerHTML += tabla;
     });
     const vBody = document.getElementById('valoresBody');
@@ -149,16 +152,14 @@ function calc(id) {
     let sa = 0, sd = 0;
     document.querySelectorAll(`.act_${id}_A, .act_${id}_B, .act_${id}_C, .act_${id}_D`).forEach(i => sa += Number(i.value) || 0);
     document.querySelectorAll(`.des_${id}_A, .des_${id}_B, .des_${id}_C, .des_${id}_D`).forEach(i => sd += Number(i.value) || 0);
-    const dAct = document.getElementById(`tot-act-${id}`);
-    const dDes = document.getElementById(`tot-des-${id}`);
-    dAct.innerText = sa; dAct.style.color = (sa === 100) ? "green" : "red";
-    dDes.innerText = sd; dDes.style.color = (sd === 100) ? "green" : "red";
+    document.getElementById(`tot-act-${id}`).innerText = sa;
+    document.getElementById(`tot-des-${id}`).innerText = sd;
 }
 
 function nextStep(step) {
     if(step === 2) {
-        const socioIds = ['empresa', 'edad', 'genero', 'equipo', 'antiguedad', 'rol'];
-        for(let id of socioIds) if(!document.getElementById(id).value) { alert("Completa los datos sociodemográficos."); return; }
+        const ids = ['empresa', 'edad', 'genero', 'equipo', 'antiguedad', 'rol'];
+        for(let id of ids) if(!document.getElementById(id).value) { alert("Completa los datos sociodemográficos."); return; }
         for(let i=1; i<=6; i++) {
             if(document.getElementById(`tot-act-${i}`).innerText !== "100" || document.getElementById(`tot-des-${i}`).innerText !== "100") {
                 alert("Cada sección OCAI debe sumar 100."); return;
@@ -179,7 +180,7 @@ async function enviarTodo() {
     const payload = {};
     for(let v of listaValores) {
         let r = document.querySelector(`input[name="${v.id}"]:checked`);
-        if(!r) { alert("Responde todos los valores de la Sección 3."); return; }
+        if(!r) { alert("Responde todos los valores."); return; }
         payload[v.id] = r.value;
     }
     const btn = document.getElementById('btnEnviar');
