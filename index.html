@@ -56,22 +56,84 @@
                 <p>La información se procesará de manera agregada y bajo estrictas normas de confidencialidad. Las respuestas son 100% anónimas; los datos sociodemográficos se solicitan únicamente para realizar análisis comparativos generales por grupos.</p>
             </div>
 
-            <div class="section-header">SECCIÓN 1: Datos Sociodemográficos</div>
+           <div class="section-header">SECCIÓN 1: Datos Sociodemográficos</div>
+            <p style="font-size: 0.9em; color: #555; margin: 15px 0; font-weight: bold; text-align: center; background: #fff8e1; padding: 10px; border-radius: 5px; border: 1px solid #ffe082;">
+                EN TODAS LAS OPCIONES PODÉS ELEGIR LA OPCIÓN "PREFIERO NO CONTESTAR"
+            </p>
             <div class="socio-grid">
-                <div class="socio-item"><label>Empresa:</label><select id="empresa"><option value="">Seleccione...</option><option value="TSA Bursatil">TSA Bursátil</option><option value="Reba">Reba</option><option value="TSA Cambio">TSA Cambio</option><option value="TSA Servicios">TSA Servicios</option><option value="TSA Desarrollos">TSA Desarrollos</option><option value="Aurax">Aurax</option><option value="Otras">Otras</option></select></div>
-                <div class="socio-item"><label>Edad:</label><select id="edad"><option value="">Seleccione...</option><option value="Menos de 30">Menos de 30</option><option value="30 a 45">30 a 45</option><option value="46 a 60">46 a 60</option><option value="Más de 60">Más de 60</option></select></div>
-                <div class="socio-item"><label>Género:</label><select id="genero"><option value="">Seleccione...</option><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option><option value="Otro">Otro</option></select></div>
+                <div class="socio-item">
+                    <label>Empresa:</label>
+                    <select id="empresa">
+                        <option value="">Seleccione...</option>
+                        <option value="Prefiero no contestar">Prefiero no contestar</option>
+                        <option value="TSA Bursatil">TSA Bursátil</option>
+                        <option value="Reba">Reba</option>
+                        <option value="TSA Cambio">TSA Cambio</option>
+                        <option value="TSA Servicios">TSA Servicios</option>
+                        <option value="TSA Desarrollos">TSA Desarrollos</option>
+                        <option value="Aurax">Aurax</option>
+                        <option value="Otras">Otras</option>
+                    </select>
+                </div>
+
+                <div class="socio-item">
+                    <label>Edad:</label>
+                    <select id="edad">
+                        <option value="">Seleccione...</option>
+                        <option value="Prefiero no contestar">Prefiero no contestar</option>
+                        <option value="Menos de 30">Menos de 30</option>
+                        <option value="30 a 45">30 a 45</option>
+                        <option value="46 a 60">46 a 60</option>
+                        <option value="Más de 60">Más de 60</option>
+                    </select>
+                </div>
+
+                <div class="socio-item">
+                    <label>Género:</label>
+                    <select id="genero">
+                        <option value="">Seleccione...</option>
+                        <option value="Prefiero no contestar">Prefiero no contestar</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
                 <div class="socio-item">
                     <label>Equipo de trabajo:</label>
                     <select id="equipo">
                         <option value="">Seleccione...</option>
-                        <option value="Negocio y Comercial">Negocio y Comercial</option><option value="Operaciones">Operaciones</option><option value="RRHH">RRHH</option><option value="PLAyFT">PLAyFT</option><option value="Contabilidad y Administración">Contabilidad y Administración</option><option value="Finanzas">Finanzas</option><option value="Tecnología">Tecnología, Ingeniería, Datos, Sistemas</option><option value="Riesgos">Riesgos</option><option value="Legales">Legales</option><option value="Procesos">Procesos</option><option value="Marketing">Marketing</option><option value="Producto y Growth">Producto y Growth</option><option value="Atención al Cliente">Atención al Cliente</option><option value="Cajas y/o Tesorería">Cajas y/o Tesorería</option><option value="Compras">Compras</option><option value="Control de Gestión">Control de Gestión</option><option value="Otros">Otros</option>
+                        <option value="Prefiero no contestar">Prefiero no contestar</option>
+                        <option value="Negocio y Comercial">Negocio y Comercial</option>
+                        <option value="Operaciones">Operaciones</option>
+                        <option value="RRHH">RRHH</option>
+                        <option value="PLAyFT">PLAyFT</option>
+                        <option value="Contabilidad y Administración">Contabilidad y Administración</option>
+                        <option value="Finanzas">Finanzas</option>
+                        <option value="Tecnología">Tecnología, Ingeniería, Datos, Sistemas</option>
+                        <option value="Riesgos">Riesgos</option>
+                        <option value="Legales">Legales</option>
+                        <option value="Procesos">Procesos</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Producto y Growth">Producto y Growth</option>
+                        <option value="Atención al Cliente">Atención al Cliente</option>
+                        <option value="Cajas y/o Tesorería">Cajas y/o Tesorería</option>
+                        <option value="Compras">Compras</option>
+                        <option value="Control de Gestión">Control de Gestión</option>
+                        <option value="Otros">Otros</option>
                     </select>
                 </div>
-                <div class="socio-item"><label>Antigüedad (años):</label><input type="number" id="antiguedad"></div>
-                <div class="socio-item"><label>Rol dentro de la organización:</label>
+
+                <div class="socio-item">
+                    <label>Antigüedad (años):</label>
+                    <input type="number" id="antiguedad" placeholder="Si prefiere no contestar, ingrese 0">
+                </div>
+
+                <div class="socio-item">
+                    <label>Rol dentro de la organización:</label>
                     <select id="rol">
                         <option value="">Seleccione...</option>
+                        <option value="Prefiero no contestar">Prefiero no contestar</option>
                         <option value="Contribuidor Individual - Analista">Contribuidor Individual - Analista</option>
                         <option value="Líder / Responsable">Líder / Responsable</option>
                         <option value="Gerente / Director">Gerente / Director</option>
@@ -79,6 +141,7 @@
                 </div>
             </div>
 
+            
             <div class="section-header">Cuestionario OCAI</div>
             <div class="intro-box" style="margin-top:15px; border-left-color: #e67e22;">
                 <p>A continuación, verás 6 dimensiones que se aperturan en 4 ítems cada una. Estas intentan indagar cómo percibís la experiencia en tu organización en estos momentos, y luego, cómo creés que debería ser en el futuro para alcanzar sus objetivos de negocio.</p>
